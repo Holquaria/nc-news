@@ -8,10 +8,8 @@ export const Articles = () => {
     const getArticles = () => {
         return api.get('/articles')
         .then(({data}) => {
-            console.log(data.articles[0])
             setArticles(data.articles)
         }).catch((err) => {
-            console.log(err)
         })
     }
 
