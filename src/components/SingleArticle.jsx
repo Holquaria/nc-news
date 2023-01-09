@@ -1,29 +1,29 @@
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { api } from '../utils/api'
+import { api, getArticle } from '../utils/api'
 
 export const SingleArticle = () => {
     const [article, setArticle] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const { article_id } = useParams()
 
-    const getArticle = () => {
-        return api.get(`/articles/${article_id}`)
-        .then(({data}) => {
-            setArticle(data.article)
-        }).catch((err) => {
-        })
-    }
-
-
     useEffect(() => {
-       getArticle()
+        setLoading(true)
+       getArticle(setArticle, article_id)
+       .then(() => {
+        setLoading(false)
+       }).catch(() => {
+        setLoading('error')
+       })
       }, []);
 
-      return <div>
+      return (loading === true ? <p>Loading...</p> : loading === 'error' ? <p>Something went wrong, please try again</p> : <div>
         <h3 className='headline'>{article.title}</h3>
         <h4>By {article.author}</h4>
         <p className='article-body'>{article.body}</p>
-      </div>
+        </div>
+    )
+    
 
 }

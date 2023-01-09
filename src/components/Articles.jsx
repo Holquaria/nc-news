@@ -1,25 +1,22 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { api } from '../utils/api'
+import { api, getArticles } from '../utils/api'
 
 export const Articles = () => {
     const [articles, setArticles] = useState([])
-
-    
-    const getArticles = () => {
-        return api.get('/articles')
-        .then(({data}) => {
-            setArticles(data.articles)
-        }).catch((err) => {
-        })
-    }
-
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-       getArticles()
+        setLoading(true)
+        getArticles(setArticles)
+        .then(() => {
+            setLoading(false)
+        }).catch(() => {
+            setLoading('error')
+        })
       }, []);
 
-    return <ul className='article-container'>
+    return (loading === true ? <p>Loading...</p> : loading === 'error' ? <p>Something went wrong, please try again</p> : <ul className='article-container'>
         {articles.map((article) => {
             return <li key={article.article_id} className='article-card'>
                 <Link to={`/articles/${article.article_id}`}><h3 className='article-title'>{article.title}</h3></Link>
@@ -30,5 +27,5 @@ export const Articles = () => {
                 Topic: {(article.topic.slice(0,1)).toUpperCase()}{article.topic.substring(1)}</p>
             </li>
         })}
-    </ul>
+    </ul>)
 }
