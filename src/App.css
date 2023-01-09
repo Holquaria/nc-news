@@ -69,3 +69,14 @@ h2 {
   flex-wrap: wrap;
 
 }
+
+.headline {
+  font-size: 30px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.article-body {
+  margin: 15px;
+  line-height: 25px;
+}
