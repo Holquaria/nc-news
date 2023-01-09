@@ -1,16 +1,12 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
-
-const newsAPI = axios.create({
-    baseURL: "https://news-query-service.onrender.com/api",
-  });
+import { api } from '../utils/api'
 
 export const Articles = () => {
     const [articles, setArticles] = useState([])
 
     
     const getArticles = () => {
-        return newsAPI.get('/articles')
+        return api.get('/articles')
         .then(({data}) => {
             console.log(data.articles[0])
             setArticles(data.articles)
