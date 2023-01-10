@@ -11,7 +11,6 @@ export const VoteBlock = ({votes, article_id, loggedIn}) => {
             return currCount += 1
         })
         updateArticleVotes(1, article_id)
-        .then(() => {})
         .catch(() => {
             setVoteCount((currCount) => {
                 return currCount -= 1

@@ -1,8 +1,9 @@
 import { postComment } from "../utils/api";
 import { useState } from "react";
+import { CommentError } from "./CommentError";
 
 export const NewComment = ({ article_id, loggedIn }) => {
-  const [newComment, setNewComment] = useState("");
+  const [newComment, setNewComment] = useState("Have your say...");
   const [postedComment, setPostedComment] = useState();
   const [error, setError] = useState(false)
   const [submitBuffer, setSubmitBuffer] = useState(false)
@@ -29,8 +30,6 @@ export const NewComment = ({ article_id, loggedIn }) => {
     });
   }
 
-  console.log(newComment);
-
  if (loggedIn === true) {
     return <div>
       <form
@@ -43,6 +42,7 @@ export const NewComment = ({ article_id, loggedIn }) => {
       >
         <textarea
           className="new-comment-body"
+            value={newComment}
           onChange={(event) => {
             setNewComment(event.target.value);
           }}
@@ -50,15 +50,7 @@ export const NewComment = ({ article_id, loggedIn }) => {
         <button className="new-comment-button" disabled={submitBuffer === true}>Submit</button>
       </form>
       { postedComment === undefined ? null : error === true ? (
-        <div className="new-comment-card-error">
-
-          <p className="username">{postedComment.author}</p>
-          <p className="date">Date posted: Just now</p>
-          <p className="comment-body">{postedComment.body}</p>
-          <p>Something went wrong, please try again</p> <button onClick={() => {
-          retryPostComment()
-        }}>Try again</button>
-        </div>
+       <CommentError retryPostComment={retryPostComment} postedComment={postedComment}/>
       ) : (
         <div className="new-comment-card">
           <p className="username">{postedComment.author}</p>

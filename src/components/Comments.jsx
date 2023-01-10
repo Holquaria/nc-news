@@ -2,6 +2,7 @@ import { getComments } from "../utils/api"
 import { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import { NewComment } from "./NewComment"
+import { CommentArray } from "./CommentArray"
 
 export const Comments = ({loggedIn}) => {
     const [comments, setComments] = useState([])
@@ -24,16 +25,6 @@ export const Comments = ({loggedIn}) => {
         <div className="comment-container">
         <h4>Comments</h4>
         <NewComment article_id={article_id} loggedIn={loggedIn} />
-        {comments.length === 0 ? <p>No comments to display... yet!</p> : <ul className='article-container'>
-        {comments.map((comment) => {
-            return <li key={comment.comment_id} className='comment-card'>
-                <p className="username">{comment.author}</p>
-                <p className="date">
-                Date posted: {comment.created_at.substring(11, 16)}, {comment.created_at.substring(0, 10)}
-                </p>
-                <p className="comment-body">{comment.body}</p>
-            </li>
-        })}
-    </ul>}
+        {comments.length === 0 ? <p>No comments to display... yet!</p> : <CommentArray comments={comments} />}
     </div>)
 }
