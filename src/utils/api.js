@@ -19,3 +19,7 @@ export const getArticle = (setArticle, article_id) => {
     }).catch((err) => {
     })
 }
+
+export const updateArticleVotes = (vote, article_id) => {
+        return api.patch(`/articles/${article_id}`, {inc_votes: vote})
+}
