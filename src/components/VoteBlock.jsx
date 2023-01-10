@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react'
-import { updateVotes } from '../utils/api'
+import { useState } from 'react'
+import { updateArticleVotes } from '../utils/api'
 
 export const VoteBlock = ({votes, article_id}) => {
-    const [voteCount, setVoteCount] = useState(0)
+    const [voteCount, setVoteCount] = useState(votes)
 
     const vote = (vote) => {
         if (vote === 'up') {
         setVoteCount((currCount) => {
             return currCount += 1
         })
-        updateVotes('up', article_id)
+        updateArticleVotes(1, article_id)
         .then(() => {})
         .catch(() => {
             setVoteCount((currCount) => {
@@ -20,7 +20,7 @@ export const VoteBlock = ({votes, article_id}) => {
             setVoteCount((currCount) => {
                 return currCount -= 1
             })
-        updateVotes('down', article_id)
+        updateArticleVotes(-1, article_id)
         .then(() => {})
         .catch(() => {
             setVoteCount((currCount) => {
@@ -33,6 +33,6 @@ export const VoteBlock = ({votes, article_id}) => {
     return <div>
         <button className="vote-up" onClick={() => {vote('up')}}>↑</button>
         <button className="vote-down" onClick={() => {vote('down')}}>↓</button>
-        <p>{votes}</p>
+        <p>{voteCount}</p>
     </div>
 }
