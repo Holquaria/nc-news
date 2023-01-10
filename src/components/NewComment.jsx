@@ -67,7 +67,7 @@ export const NewComment = ({ article_id, loggedIn }) => {
           <p className="comment-body">{postedComment.body}</p>
         </div> ) }
   </div> 
-  } else return <p className="comment-placeholder">Please log in to comment</p>
+  } else return <p className="login-placeholder">Please log in to comment</p>
 
 
 };

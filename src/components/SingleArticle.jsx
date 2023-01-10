@@ -25,7 +25,7 @@ export const SingleArticle = ({loggedIn}) => {
         <h3 className='headline'>{article.title}</h3>
         <h4>By {article.author}</h4>
         <p className='article-body'>{article.body}</p>
-        <VoteBlock votes={article.votes} article_id={article_id}/>
+        <VoteBlock votes={article.votes} article_id={article_id} loggedIn={loggedIn}/>
         <Comments loggedIn={loggedIn} />
         </div>
     )

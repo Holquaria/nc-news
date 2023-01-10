@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { updateArticleVotes } from '../utils/api'
 
-export const VoteBlock = ({votes, article_id}) => {
+export const VoteBlock = ({votes, article_id, loggedIn}) => {
     const [voteCount, setVoteCount] = useState(votes)
+    const [voted, setVoted] = useState()
 
     const vote = (vote) => {
         if (vote === 'up') {
@@ -27,11 +28,14 @@ export const VoteBlock = ({votes, article_id}) => {
             })
         })
         }
+        setVoted(true)
     }
 
+    if (loggedIn === true) {
     return <div>
-        <button className="vote-up" onClick={() => {vote('up')}}>↑</button>
-        <button className="vote-down" onClick={() => {vote('down')}}>↓</button>
+        <button className="vote-up" disabled={voted === true} onClick={() => {vote('up')}}>↑</button>
+        <button className="vote-down" disabled={voted === true} onClick={() => {vote('down')}}>↓</button>
         <p>{voteCount}</p>
     </div>
+    } else return <p className='login-placeholder'>Please log in to vote</p>
 }
