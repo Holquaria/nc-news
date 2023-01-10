@@ -8,8 +8,9 @@ export const Articles = () => {
 
     useEffect(() => {
         setLoading(true)
-        getArticles(setArticles)
-        .then(() => {
+        getArticles()
+        .then((articles) => {
+            setArticles(articles)
             setLoading(false)
         }).catch(() => {
             setLoading('error')

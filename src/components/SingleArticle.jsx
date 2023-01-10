@@ -11,8 +11,9 @@ export const SingleArticle = () => {
 
     useEffect(() => {
         setLoading(true)
-       getArticle(setArticle, article_id)
-       .then(() => {
+       getArticle(article_id)
+       .then((article) => {
+        setArticle(article)
         setLoading(false)
        }).catch(() => {
         setLoading('error')

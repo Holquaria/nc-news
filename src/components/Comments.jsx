@@ -10,10 +10,11 @@ export const Comments = () => {
 
     useEffect(() => {
         setLoading(true)
-       getComments(setComments, article_id)
-       .then(() => {
+       getComments(article_id)
+       .then((comments) => {
+        setComments(comments)
         setLoading(false)
-       }).catch(() => {
+       }).catch((err) => {
         setLoading('error')
        })
       }, []);
