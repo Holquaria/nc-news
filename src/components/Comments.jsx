@@ -1,6 +1,7 @@
 import { getComments } from "../utils/api"
 import { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
+import { NewComment } from "./NewComment"
 
 export const Comments = () => {
     const [comments, setComments] = useState([])
@@ -22,7 +23,8 @@ export const Comments = () => {
     return (loading === true ? <p>Loading...</p> : loading === 'error' ? <p>Something went wrong, please try again</p> : 
         <div className="comment-container">
         <h4>Comments</h4>
-        <ul className='article-container'>
+        <NewComment article_id={article_id} />
+        {comments.length === 0 ? <p>No comments to display... yet!</p> : <ul className='article-container'>
         {comments.map((comment) => {
             return <li key={comment.comment_id} className='comment-card'>
                 <p className="username">{comment.author}</p>
@@ -32,6 +34,6 @@ export const Comments = () => {
                 <p className="comment-body">{comment.body}</p>
             </li>
         })}
-    </ul>
+    </ul>}
     </div>)
 }
