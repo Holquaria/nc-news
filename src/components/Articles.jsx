@@ -24,7 +24,10 @@ export const Articles = () => {
                 <br />
                 Date posted: {article.created_at.substring(11, 16)}, {article.created_at.substring(0, 10)}
                 <br />
-                Topic: {(article.topic.slice(0,1)).toUpperCase()}{article.topic.substring(1)}</p>
+                Topic: {(article.topic.slice(0,1)).toUpperCase()}{article.topic.substring(1)}
+                <br />
+                Comments: {article.comment_count}</p>
+                
             </li>
         })}
     </ul>)

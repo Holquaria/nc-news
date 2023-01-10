@@ -19,3 +19,11 @@ export const getArticle = (setArticle, article_id) => {
     }).catch((err) => {
     })
 }
+
+export const getComments = (setComments, article_id) => {
+    return api.get(`/articles/${article_id}/comments`)
+    .then(({data}) => {
+        setComments(data.comments)
+    }).catch((err) => {
+    })
+}
