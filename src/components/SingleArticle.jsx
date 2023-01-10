@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { api, getArticle } from '../utils/api'
 import { Comments } from './Comments'
+import { VoteBlock } from './VoteBlock'
 
 export const SingleArticle = () => {
     const [article, setArticle] = useState([])
@@ -24,6 +25,7 @@ export const SingleArticle = () => {
         <h3 className='headline'>{article.title}</h3>
         <h4>By {article.author}</h4>
         <p className='article-body'>{article.body}</p>
+        <VoteBlock votes={article.votes} article_id={article_id}/>
         <Comments />
         </div>
     )
