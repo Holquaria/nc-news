@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { api, getArticle } from '../utils/api'
+import { Comments } from './Comments'
 import { VoteBlock } from './VoteBlock'
 
 export const SingleArticle = () => {
@@ -11,8 +12,9 @@ export const SingleArticle = () => {
 
     useEffect(() => {
         setLoading(true)
-       getArticle(setArticle, article_id)
-       .then(() => {
+       getArticle(article_id)
+       .then((article) => {
+        setArticle(article)
         setLoading(false)
        }).catch(() => {
         setLoading('error')
@@ -24,6 +26,7 @@ export const SingleArticle = () => {
         <h4>By {article.author}</h4>
         <p className='article-body'>{article.body}</p>
         <VoteBlock votes={article.votes} article_id={article_id}/>
+        <Comments />
         </div>
     )
     

@@ -4,19 +4,24 @@ export const api = axios.create({
     baseURL: "https://news-query-service.onrender.com/api",
   });
 
-export const getArticles = (setArticles) => {
+export const getArticles = () => {
       return api.get('/articles')
       .then(({data}) => {
-          setArticles(data.articles)
-      }).catch((err) => {
+          return data.articles
       })
   }
 
-export const getArticle = (setArticle, article_id) => {
+export const getArticle = (article_id) => {
     return api.get(`/articles/${article_id}`)
     .then(({data}) => {
-        setArticle(data.article)
-    }).catch((err) => {
+        return data.article
+    })
+}
+
+export const getComments = (article_id) => {
+    return api.get(`/articles/${article_id}/comments`)
+    .then(({data}) => {
+        return data.comments
     })
 }
 
