@@ -4,7 +4,7 @@ import { api, getArticle } from '../utils/api'
 import { Comments } from './Comments'
 import { VoteBlock } from './VoteBlock'
 
-export const SingleArticle = () => {
+export const SingleArticle = ({loggedIn}) => {
     const [article, setArticle] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -26,7 +26,7 @@ export const SingleArticle = () => {
         <h4>By {article.author}</h4>
         <p className='article-body'>{article.body}</p>
         <VoteBlock votes={article.votes} article_id={article_id}/>
-        <Comments />
+        <Comments loggedIn={loggedIn} />
         </div>
     )
     
