@@ -19,3 +19,17 @@ export const getArticle = (setArticle, article_id) => {
     }).catch((err) => {
     })
 }
+
+export const updateVotes = (vote, article_id) => {
+    if (vote === 'up') {
+        return api.patch(`/articles/${article_id}`, {inc_votes: 1})
+        .then(() => {
+            console.log('vote +1')
+        })
+    } else if (vote === 'down') {
+        return api.patch(`/articles/${article_id}`, {inc_votes: -1})
+        .then(() => {
+            console.log('vote -1')
+        })
+    }
+}
