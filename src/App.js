@@ -15,8 +15,8 @@ function App() {
       <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <Navigation />
       <Routes>
-        <Route path='/' element={<Articles />} />
-        <Route path='/articles' element={<Articles />} />
+        <Route path='/' element={<Articles loggedIn={loggedIn}/>} />
+        <Route path='/articles' element={<Articles loggedIn={loggedIn}/>} />
         <Route path='/articles/:article_id' element={<SingleArticle loggedIn={loggedIn} />}  />
         <Route path='topics/:topic/articles' element={<Articles />} />
       </Routes>
