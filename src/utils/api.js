@@ -28,3 +28,8 @@ export const getComments = (article_id) => {
 export const updateArticleVotes = (vote, article_id) => {
         return api.patch(`/articles/${article_id}`, {inc_votes: vote})
 }
+
+export const postComment = (article_id, body, username) => {
+    const request = { body, username }
+    return api.post(`/articles/${article_id}/comments`, request)
+}
