@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 
 export const Articles = () => {
     const [articles, setArticles] = useState([])
-    const [topics, setTopics] = useState([])
+
     const [loading, setLoading] = useState(false)
 
     const { topic } = useParams()
@@ -24,8 +24,7 @@ export const Articles = () => {
         })
       }, [topic]);
 
-    return (loading === true ? <p>Loading...</p> : loading === 'error' ? <p>Something went wrong, please try again</p> : 
-    <div><TopicsNav topics={topics} setTopics={setTopics} />
+    return  (<div><TopicsNav />{loading === true ? <p>Loading...</p> : loading === 'error' ? <p>Something went wrong, please try again</p> : 
     <ul className='article-container'>
         {articles.map((article) => {
             return <li key={article.article_id} className='article-card'>
@@ -40,5 +39,5 @@ export const Articles = () => {
                 
             </li>
         })}
-    </ul></div>)
+    </ul>}</div>)
 }

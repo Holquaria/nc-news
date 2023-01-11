@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import { getTopics } from "../utils/api"
 import { Link } from "react-router-dom"
 
-export const TopicsNav = ({topics, setTopics}) => {
-
+export const TopicsNav = () => {
+    const [topics, setTopics] = useState([])
     const [err, setErr] = useState(null)
 
     useEffect(() => {
