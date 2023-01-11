@@ -7,7 +7,7 @@ export const Header = ({loggedIn, setLoggedIn}) => {
     <div className="header-bar">
       <h1>BNN - Beehive News Network</h1>
       {loggedIn === false ? (
-        <button
+        <button className="log-in"
           onClick={() => {
             setLoggedIn(true);
           }}

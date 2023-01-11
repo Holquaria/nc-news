@@ -19,7 +19,7 @@ export const SubNav = ({sortBy, setSortBy, sortOrder, setSortOrder}) => {
     }
 
     else {
-        return <div><ul className="topics-nav">{topics.map((topic) => {
+        return <div className="sub-nav"><ul className="topics-nav">{topics.map((topic) => {
             return <li key={topic.slug}><Link to={`/topics/${topic.slug}/articles`}><p className="topic-link">{(topic.slug.slice(0,1)).toUpperCase()}{topic.slug.substring(1)}</p></Link></li>
         })
     }</ul>
