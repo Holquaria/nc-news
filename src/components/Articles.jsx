@@ -1,28 +1,30 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api, getArticles } from '../utils/api'
-import { TopicsNav } from './TopicsNav'
+import { SubNav } from './SubNav'
 import { useParams } from 'react-router-dom'
 
 export const Articles = () => {
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(false)
+    const [sortBy, setSortBy] = useState('created_at')
+    const [sortOrder, setSortOrder] = useState('desc')
 
     const { topic } = useParams()
 
 
     useEffect(() => {
         setLoading(true)
-        getArticles(topic)
+        getArticles(topic, sortBy, sortOrder)
         .then((articles) => {
             setArticles(articles)
             setLoading(false)
         }).catch((err) => {
             setLoading('error')
         })
-      }, [topic]);
+      }, [topic, sortBy, sortOrder]);
 
-    return  (<div><TopicsNav />{loading === true ? <p>Loading...</p> : loading === 'error' ? <p>Something went wrong, please try again</p> : 
+    return  (<div><SubNav sortBy={sortBy} setSortBy={setSortBy} sortOrder={sortOrder} setSortOrder={setSortOrder} />{loading === true ? <p>Loading...</p> : loading === 'error' ? <p>Something went wrong, please try again</p> : 
     <ul className='article-container'>
         {articles.map((article) => {
             return <li key={article.article_id} className='article-card'>
@@ -34,6 +36,7 @@ export const Articles = () => {
                 Topic: {(article.topic.slice(0,1)).toUpperCase()}{article.topic.substring(1)}
                 <br />
                 Comments: {article.comment_count}</p>
+                Votes: {article.votes}
                 
             </li>
         })}
