@@ -50,7 +50,7 @@ export const NewComment = ({ article_id, loggedIn }) => {
         <button className="new-comment-button" disabled={submitBuffer === true}>Submit</button>
       </form>
       { postedComment === undefined ? null : error === true ? (
-       <CommentError retryPostComment={retryPostComment} postedComment={postedComment}/>
+       <CommentError retryPostComment={retryPostComment} postedComment={postComment}/>
       ) : (
         <div className="new-comment-card">
           <p className="username">{postedComment.author}</p>
