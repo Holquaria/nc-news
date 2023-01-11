@@ -24,6 +24,7 @@
   color: white;
 }
 
+/* CSS Reset */
 * {
   margin: 0px;
   padding: 0px;
@@ -64,6 +65,9 @@ h1 {
 
 h2 {
   font-size: 18px;
+  margin: 0px;
+  padding: 10px;
+  background-color: antiquewhite;
 }
 
 h4 {
@@ -179,4 +183,18 @@ h4 {
 .login-placeholder {
   font-style: italic;
   margin: 10px;
+}
+
+.topics-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: rgb(36, 36, 36);
+  padding: 10px;
+  list-style-type: none;
+}
+
+.topic-link {
+  color: antiquewhite;
+  text-decoration: underline;
 }

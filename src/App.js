@@ -18,6 +18,7 @@ function App() {
         <Route path='/' element={<Articles />} />
         <Route path='/articles' element={<Articles />} />
         <Route path='/articles/:article_id' element={<SingleArticle loggedIn={loggedIn} />}  />
+        <Route path='topics/articles/:topic' element={<Articles />} />
       </Routes>
     </div>
   );
