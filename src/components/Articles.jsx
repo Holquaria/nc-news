@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom'
 
 export const Articles = () => {
     const [articles, setArticles] = useState([])
-
     const [loading, setLoading] = useState(false)
 
     const { topic } = useParams()
@@ -19,7 +18,6 @@ export const Articles = () => {
             setArticles(articles)
             setLoading(false)
         }).catch((err) => {
-            console.log(err)
             setLoading('error')
         })
       }, [topic]);
