@@ -7,7 +7,9 @@ export const CommentArray = ({comments, setCommentRemoved, loggedIn}) => {
     const removeComment = (comment_id) => {
         setDeletingComment(true)
         deleteComment(comment_id).then(() => {
-            setCommentRemoved(true)
+            setCommentRemoved((currCount) => {
+                return currCount + 1
+            })
         })
     }
 
