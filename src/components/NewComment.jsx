@@ -2,6 +2,7 @@ import { postComment } from "../utils/api";
 import { useState } from "react";
 import { CommentError } from "./CommentError";
 import { deleteComment } from "../utils/api";
+import { DeleteCommentButton } from "./DeleteCommentButton";
 
 export const NewComment = ({ article_id, loggedIn, setCommentRemoved }) => {
   const [newComment, setNewComment] = useState("");
@@ -81,7 +82,7 @@ export const NewComment = ({ article_id, loggedIn, setCommentRemoved }) => {
           <p className="date">Date posted: Just now</p>
           </div>
           <p className="comment-body">{postingComment.body}</p>
-          <button disabled={deleteNewCommentBuffer === false || deleting === true} onClick={() => {removeComment(postedComment?.comment_id)}} className="delete-comment">Delete</button>
+          <DeleteCommentButton setDeleting={setDeleting} deleteComment={deleteComment} comment_id={postedComment.comment_id} setDeleted={setDeleted} setError={setError} message={'Delete'} deleteNewCommentBuffer={deleteNewCommentBuffer} />
         </div> ) }
   </div> 
   } else return <p className="login-placeholder">Please log in to comment</p>
