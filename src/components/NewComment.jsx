@@ -68,7 +68,7 @@ export const NewComment = ({ article_id, loggedIn, setCommentRemoved }) => {
             setNewComment(event.target.value);
           }}
         ></textarea>
-        <button className="new-comment-button" disabled={submitBuffer === true}>Submit</button>
+        <button className="new-comment-button" disabled={submitBuffer === true || newComment === ''}>Submit</button>
       </form>
       { postingComment === undefined ? null : error === true ? (
        <CommentError retryPostComment={retryPostComment} postingComment={postingComment}/>
