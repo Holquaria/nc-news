@@ -10,16 +10,14 @@ export const NewComment = ({ article_id, loggedIn, setCommentRemoved }) => {
   const [deleteNewCommentBuffer, setDeleteNewCommentBuffer] = useState(false)
   const [error, setError] = useState(false)
   const [submitBuffer, setSubmitBuffer] = useState(false)
-  const [deletingComment, setDeletingComment] = useState(null)
-  const [newCommentDeleted, setNewCommentDeleted] = useState(false)
+  const [deleting, setDeleting] = useState(null)
+  const [deleted, setDeleted] = useState(false)
 
   const removeComment = (comment_id) => {
-    setDeletingComment(true)
+    setDeleting(true)
     deleteComment(comment_id).then(() => {
-      setDeletingComment(false)
-      setCommentRemoved((currCount) => {
-        return currCount + 1
-      })
+      setDeleting(false)
+      setDeleted(true)
     })
 }
 
@@ -72,14 +70,18 @@ export const NewComment = ({ article_id, loggedIn, setCommentRemoved }) => {
       </form>
       { postingComment === undefined ? null : error === true ? (
        <CommentError retryPostComment={retryPostComment} postingComment={postingComment}/>
-      ) : (
+      ) : deleting === true ? <div className="deleted-comment-card">
+      <p className="comment-body">Comment deleting</p>
+    </div> : deleted === true ? <div className="deleted-comment-card">
+    <p className="comment-body">Comment deleted</p>
+  </div> : (
         <div className="new-comment-card">
             <div className="new-comment-header">
           <p className="username">{postingComment.author}</p>
           <p className="date">Date posted: Just now</p>
           </div>
           <p className="comment-body">{postingComment.body}</p>
-          <button disabled={deleteNewCommentBuffer === false || deletingComment === true} onClick={() => {removeComment(postedComment?.comment_id)}} className="delete-comment">Delete</button>
+          <button disabled={deleteNewCommentBuffer === false || deleting === true} onClick={() => {removeComment(postedComment?.comment_id)}} className="delete-comment">Delete</button>
         </div> ) }
   </div> 
   } else return <p className="login-placeholder">Please log in to comment</p>

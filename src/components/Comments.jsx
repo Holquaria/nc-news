@@ -20,7 +20,7 @@ export const Comments = ({loggedIn}) => {
        }).catch((err) => {
         setLoading('error')
        })
-      }, [commentRemoved]);
+      }, []);
 
     return (loading === true ? <p>Loading...</p> : loading === 'error' ? <p>Something went wrong, please try again</p> : 
         <div className="comment-container">
