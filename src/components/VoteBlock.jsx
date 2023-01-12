@@ -31,10 +31,10 @@ export const VoteBlock = ({votes, article_id, loggedIn}) => {
     }
 
     if (loggedIn === true) {
-    return <div>
+    return <div className='vote-block'>
         <button className="vote-up" disabled={voted === true} onClick={() => {vote('up')}}>↑</button>
         <button className="vote-down" disabled={voted === true} onClick={() => {vote('down')}}>↓</button>
-        <p>{voteCount}</p>
+        <p className='vote-count'>{voteCount}</p>
     </div>
-    } else return <p className='login-placeholder'>Please log in to vote</p>
+    } else return <div className='vote-block'><p className='login-placeholder'>Please log in to vote</p></div>
 }

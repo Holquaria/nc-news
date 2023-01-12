@@ -21,9 +21,9 @@ export const SingleArticle = ({loggedIn}) => {
        })
       }, []);
 
-      return (loading === true ? <p>Loading...</p> : loading === 'error' ? <p>Something went wrong, please try again</p> : <div>
+      return (loading === true ? <p>Loading...</p> : loading === 'error' ? <p>Something went wrong, please try again</p> : <div className='single-article'>
         <h3 className='headline'>{article.title}</h3>
-        <h4>By {article.author}</h4>
+        <h4 className='author-tag'>By {article.author}</h4>
         <p className='article-body'>{article.body}</p>
         <VoteBlock votes={article.votes} article_id={article_id} loggedIn={loggedIn}/>
         <Comments loggedIn={loggedIn} />

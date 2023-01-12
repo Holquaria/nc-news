@@ -53,9 +53,10 @@ export const NewComment = ({ article_id, loggedIn }) => {
        <CommentError retryPostComment={retryPostComment} postedComment={postComment}/>
       ) : (
         <div className="new-comment-card">
+            <div className="new-comment-header">
           <p className="username">{postedComment.author}</p>
           <p className="date">Date posted: Just now</p>
-
+          </div>
           <p className="comment-body">{postedComment.body}</p>
         </div> ) }
   </div> 
