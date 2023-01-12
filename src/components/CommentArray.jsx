@@ -1,13 +1,10 @@
-export const CommentArray = ({comments}) => {
-   return <ul className='article-container'>
+import { CommentCard } from "./CommentCard"
+
+export const CommentArray = ({comments, setCommentRemoved, loggedIn}) => {
+
+   return <ul>
         {comments.map((comment) => {
-            return <li key={comment.comment_id} className='comment-card'>
-                <p className="username">{comment.author}</p>
-                <p className="date">
-                Date posted: {comment.created_at.substring(11, 16)}, {comment.created_at.substring(0, 10)}
-                </p>
-                <p className="comment-body">{comment.body}</p>
-            </li>
+            return <CommentCard key={comment.comment_id} comment={comment} loggedIn={loggedIn} />
         })}
     </ul>
     }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { api, getArticles } from '../utils/api'
 import { SubNav } from './SubNav'
 import { useParams } from 'react-router-dom'
+import { ArticleCard } from './ArticleCard'
 
 export const Articles = () => {
     const [articles, setArticles] = useState([])
@@ -27,18 +28,7 @@ export const Articles = () => {
     return  (<div><SubNav sortBy={sortBy} setSortBy={setSortBy} sortOrder={sortOrder} setSortOrder={setSortOrder} />{loading === true ? <p>Loading...</p> : loading === 'error' ? <p>Something went wrong, please try again</p> : 
     <ul className='article-container'>
         {articles.map((article) => {
-            return <li key={article.article_id} className='article-card'>
-                <Link to={`/articles/${article.article_id}`}><h3 className='article-title'>{article.title}</h3></Link>
-                <p>Author: {article.author}
-                <br />
-                Date posted: {article.created_at.substring(11, 16)}, {article.created_at.substring(0, 10)}
-                <br />
-                Topic: {(article.topic.slice(0,1)).toUpperCase()}{article.topic.substring(1)}
-                <br />
-                Comments: {article.comment_count}</p>
-                Votes: {article.votes}
-                
-            </li>
+            return <ArticleCard key={article.article_id} article={article} />
         })}
     </ul>}</div>)
 }
