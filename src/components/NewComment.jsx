@@ -14,25 +14,17 @@ export const NewComment = ({ article_id, loggedIn, setCommentRemoved }) => {
   const [deleting, setDeleting] = useState(null)
   const [deleted, setDeleted] = useState(false)
 
-  const removeComment = (comment_id) => {
-    setDeleting(true)
-    deleteComment(comment_id).then(() => {
-      setDeleting(false)
-      setDeleted(true)
-    })
-}
-
   const postNewComment = (e) => {
     e.preventDefault();
     if (newComment !== "") {
       setPostingComment((currComments) => {
-       return [...currComments, { body: newComment, author: "tickle122" }]
+       return [{ body: newComment, author: "tickle122" }, ...currComments, ]
       });
       setNewComment("");
       postComment(article_id, newComment, "tickle122")
       .then(({data}) => {
         setPostedComment((currComments) => {
-          return [...currComments, data.comment]
+          return [data.comment, ...currComments]
         })
         setDeleteNewCommentBuffer(true)
       })
@@ -52,8 +44,6 @@ export const NewComment = ({ article_id, loggedIn, setCommentRemoved }) => {
         setError(true)
     });
   }
-
-console.log(postingComment)
 
  if (loggedIn === true) {
     return <div>
@@ -82,13 +72,13 @@ console.log(postingComment)
     <p className="comment-body">Comment deleted</p>
   </div> : ( <ul>
     {postingComment.map((comment, index) => {
-        return <li className="new-comment-card">
+        return <li key={comment.body} className="new-comment-card">
             <div className="new-comment-header">
           <p className="username">{comment.author}</p>
           <p className="date">Date posted: Just now</p>
           </div>
           <p className="comment-body">{comment.body}</p>
-          <DeleteCommentButton setDeleting={setDeleting} deleteComment={deleteComment} comment_id={postedComment[index].comment_id} setDeleted={setDeleted} setError={setError} message={'Delete'} deleteNewCommentBuffer={deleteNewCommentBuffer} />
+          <DeleteCommentButton setDeleting={setDeleting} deleteComment={deleteComment} comment_id={postedComment[index]?.comment_id} setDeleted={setDeleted} setError={setError} message={'Delete'} deleteNewCommentBuffer={deleteNewCommentBuffer} />
         </li> })} </ul>) }
   </div> 
   } else return <p className="login-placeholder">Please log in to comment</p>

@@ -415,3 +415,7 @@ select {
 
   margin-bottom: 10px;
 }
+
+.voting-error {
+  color: rgb(237, 202, 203);
+}

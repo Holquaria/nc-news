@@ -7,17 +7,6 @@ export const CommentCard = ({comment, loggedIn}) => {
     const [deleted, setDeleted] = useState(false)
     const [error, setError] = useState(false)
 
-    const removeComment = () => {
-        setDeleting(true)
-        deleteComment(comment.comment_id).then(() => {
-        setDeleting(false)
-        setDeleted(true)
-    }).catch(() => {
-        setDeleting(false)
-        setError(true)
-    })
-    }
-
     return deleted === false ? deleting === true ? <li className='deleted-comment-card'>
     <p className="comment-body">Comment deleting</p>
 </li> : error === true ? <li className='deleted-comment-card'>
