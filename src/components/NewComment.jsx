@@ -1,10 +1,12 @@
 import { postComment } from "../utils/api";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CommentError } from "./CommentError";
 import { deleteComment } from "../utils/api";
 import { DeleteCommentButton } from "./DeleteCommentButton";
+import { UserContext } from "../context/User";
 
-export const NewComment = ({ article_id, loggedIn, setCommentRemoved }) => {
+export const NewComment = ({ article_id }) => {
+  const { user } = useContext(UserContext)
   const [newComment, setNewComment] = useState("");
   const [postingComment, setPostingComment] = useState([]);
   const [postedComment, setPostedComment] = useState([]);
@@ -18,10 +20,10 @@ export const NewComment = ({ article_id, loggedIn, setCommentRemoved }) => {
     e.preventDefault();
     if (newComment !== "") {
       setPostingComment((currComments) => {
-       return [{ body: newComment, author: "tickle122" }, ...currComments, ]
+       return [{ body: newComment, author: user }, ...currComments, ]
       });
       setNewComment("");
-      postComment(article_id, newComment, "tickle122")
+      postComment(article_id, newComment, user)
       .then(({data}) => {
         setPostedComment((currComments) => {
           return [data.comment, ...currComments]
@@ -39,17 +41,17 @@ export const NewComment = ({ article_id, loggedIn, setCommentRemoved }) => {
 
   const retryPostComment = () => {
       setError(false)
-      postComment(article_id, postingComment.body, 'tickle122')
+      postComment(article_id, postingComment.body, user)
       .catch(() => {
         setError(true)
     });
   }
 
- if (loggedIn === true) {
+ if (user !== null) {
     return <div>
       <form
         onSubmit={(event) => {
-            if (loggedIn === true) {
+            if (user !== null) {
           postNewComment(event);
             } 
         }}

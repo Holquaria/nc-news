@@ -1,22 +1,23 @@
-import { User } from "./User";
-import { useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../context/User";
 
-export const Header = ({loggedIn, setLoggedIn}) => {
+export const Header = () => {
+  const {user, setUser} = useContext(UserContext)
 
   return (
     <div className="header-bar">
       <Link to={'/'}> <h1>BNN - Beehive News Network</h1></Link>
-      {loggedIn === false ? (
+      {user === null ? (
         <button className="log-in"
           onClick={() => {
-            setLoggedIn(true);
+            setUser('tickle122');
           }}
         >
           Log In
         </button>
       ) : (
-        <p className="user-handle">tickle122</p>
+        <p className="user-handle">{user}</p>
       )}
     </div>
   );

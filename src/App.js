@@ -7,18 +7,21 @@ import { SingleArticle } from './components/SingleArticle'
 import { Routes, Route } from 'react-router-dom'
 import { useState } from 'react';
 import { ErrorPage } from './components/404';
+import { useContext } from 'react'
+import { UserContext } from './context/User';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+
+
 
   return (
     <div className="App">
-      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+      <Header />
       <Navigation />
       <Routes>
-        <Route path='/' element={<Articles loggedIn={loggedIn}/>} />
-        <Route path='/articles' element={<Articles loggedIn={loggedIn}/>} />
-        <Route path='/articles/:article_id' element={<SingleArticle loggedIn={loggedIn} />}  />
+        <Route path='/' element={<Articles />} />
+        <Route path='/articles' element={<Articles />} />
+        <Route path='/articles/:article_id' element={<SingleArticle />}  />
         <Route path='topics/:topic/articles' element={<Articles />} />
         <Route path='/*' element={<ErrorPage />} />
       </Routes>
