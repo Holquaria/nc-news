@@ -419,3 +419,7 @@ select {
 .voting-error {
   color: rgb(237, 202, 203);
 }
+
+.error-message {
+  padding: 10px;
+}
