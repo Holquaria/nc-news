@@ -7,6 +7,7 @@ import { CommentArray } from "./CommentArray"
 export const Comments = ({loggedIn}) => {
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(false)
+    const [commentRemoved, setCommentRemoved] = useState(0)
 
     const { article_id } = useParams()
 
@@ -24,7 +25,7 @@ export const Comments = ({loggedIn}) => {
     return (loading === true ? <p>Loading...</p> : loading === 'error' ? <p>Something went wrong, please try again</p> : 
         <div className="comment-container">
         <h4>Comments</h4>
-        <NewComment article_id={article_id} loggedIn={loggedIn} />
-        {comments.length === 0 ? <p>No comments to display... yet!</p> : <CommentArray comments={comments} />}
+        <NewComment article_id={article_id} loggedIn={loggedIn} setCommentRemoved={setCommentRemoved}/>
+        {comments.length === 0 ? <p>No comments to display... yet!</p> : <CommentArray comments={comments} setCommentRemoved={setCommentRemoved} loggedIn={loggedIn}/>}
     </div>)
 }
