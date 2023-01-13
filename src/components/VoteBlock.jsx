@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../context/User";
 import { updateArticleVotes } from "../utils/api";
 
-export const VoteBlock = ({ votes, article_id, loggedIn }) => {
+export const VoteBlock = ({ votes, article_id }) => {
+    const { user } = useContext(UserContext)
   const [voteCount, setVoteCount] = useState(votes);
   const [voted, setVoted] = useState();
   const [voteDirection, setVoteDirection] = useState("");
@@ -75,7 +77,7 @@ export const VoteBlock = ({ votes, article_id, loggedIn }) => {
     }
   };
 
-  if (loggedIn === true) {
+  if (user !== null) {
     return (
       <div className="vote-block">
         <p className="votes">Did you like this article?</p>

@@ -26,7 +26,7 @@ export const Articles = () => {
         })
       }, [topic, sortBy, sortOrder]);
 
-    return  (<div><SubNav sortBy={sortBy} setSortBy={setSortBy} sortOrder={sortOrder} setSortOrder={setSortOrder} />{loading === true ? <p>Loading...</p> : loading === 'error' ? <Topic404 /> : 
+    return  (<div><SubNav sortBy={sortBy} setSortBy={setSortBy} sortOrder={sortOrder} setSortOrder={setSortOrder} />{loading === true ? <p className='error-message'>Loading...</p> : loading === 'error' ? <Topic404 /> : 
     <ul className='article-container'>
         {articles.map((article) => {
             return <ArticleCard key={article.article_id} article={article} />

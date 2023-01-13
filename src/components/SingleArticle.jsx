@@ -6,7 +6,7 @@ import { VoteBlock } from './VoteBlock'
 import { Link } from 'react-router-dom'
 import { Article404 } from './Article404'
 
-export const SingleArticle = ({loggedIn}) => {
+export const SingleArticle = () => {
     const [article, setArticle] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -28,8 +28,8 @@ export const SingleArticle = ({loggedIn}) => {
         <h3 className='headline'>{article.title}</h3>
         <h4 className='author-tag'>By {article.author}</h4>
         <p className='article-body'>{article.body}</p>
-        <VoteBlock votes={article.votes} article_id={article_id} loggedIn={loggedIn}/>
-        <Comments loggedIn={loggedIn} />
+        <VoteBlock votes={article.votes} article_id={article_id} />
+        <Comments />
         </div>
     )
     
