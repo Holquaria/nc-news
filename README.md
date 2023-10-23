@@ -1,7 +1,35 @@
-A repo for the React frontend of my NC News site.
+# Welcome to Beehive News Network
 
-Please find a hosted version here: https://lighthearted-sawine-da4b68.netlify.app/
+This project is a portfolio piece to demonstrate my frontend portfolio utilising my backend portfolio API.
 
-This site queries my backend API (https://github.com/Holquaria/backend-portfolio) and displays each article with comments from mock users.
+Hosted version: https://lighthearted-sawine-da4b68.netlify.app/
 
-The homepage will display a list of articles which can then be filtered by several parameters. Users can log in with a hard coded username and will then be able to comment, like and vote on articles.
+The site is a mockup of a user generated news site, with the ability to read articles posted by users, vote and comment on them.
+
+It is build in React and uses State, Context and functional components.
+
+Backend API repo: https://github.com/Holquaria/backend-portfolio
+
+## Cloning and creating a build
+
+To clone this repository please run the following command
+
+```
+git clone https://github.com/Holquaria/nc-news
+```
+
+To install dependencies please run the following command
+
+```
+npm install
+```
+
+To run the server locally please run the following command
+
+```
+npm start
+```
+
+## Minimum version information
+
+Node: v19.0.0
